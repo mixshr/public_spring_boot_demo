@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Loop</title>
+    <style>
+        table th, table td {padding: 5px;}
+        .row  {
+            font-style: italic;
+        }
+        .even-row {
+            color: black;
+        }
+        .odd-row {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<h1>Остатки на складах</h1>
+<table border="1">
+    <tr>
+        <th>No</th>
+        <th>Склад</th>
+        <th>Номенклатура</th>
+        <th>Количество</th>
+    </tr>
+    <!--/*@thymesVar id="quantityList" type=""*/-->
+    <tr th:each="quntity, state : ${quantityList}"
+        class="row" th:classappend="${state.odd} ? 'odd-row' : 'even-row'">
+        <td th:utext="${state.count}">No</td>
+        <td th:utext="${quntity.warehouseObject.name}">Склад</td>
+        <td th:utext="${quntity.nomenclatureObject.name}">Номенклатура</td>
+        <td th:utext="${quntity.quantity}">Количество</td>
+    </tr>
+</table>
+</body>
+</html>
